@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/JL-stefan/gwp-chitchat/data"
 	"github.com/prometheus/common/log"
@@ -31,8 +32,10 @@ type Thread struct {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	tid, _ := strconv.Atoi(id)
 	var err error
-	res, err := data.Threads()
+	res, err := data.Threads(tid)
 	var result = make([]Thread, len(res))
 	// var result = make([]Thread, 0)
 	log.Info(result)

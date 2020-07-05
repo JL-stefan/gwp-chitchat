@@ -14,8 +14,8 @@ type Thread struct {
 	CreatedAt time.Time `json:"createdAt"`
 }
 
-func Threads() (threads []Thread, err error) {
-	rows, err := DB.Query("SELECT id, uuid, topic, user_id, created_at FROM threads ORDER BY created_at DESC")
+func Threads(id int) (threads []Thread, err error) {
+	rows, err := DB.Query("SELECT id, uuid, topic, user_id, created_at FROM threads where id=? ORDER BY created_at DESC", id)
 	if err != nil {
 		return
 	}

@@ -6,7 +6,7 @@ import (
 )
 
 func TestThreads(t *testing.T) {
-	res, _ := Threads()
+	res, _ := Threads(2)
 	t.Log(res)
 	t.Log(res[0].CreatedAt.Unix())
 }
